@@ -94,11 +94,13 @@ import projectsDistinctionsFWACollisionSource from '../models/projects/distincti
 import projectsDistinctionsCSSDABaseSource from '../models/projects/distinctions/cssda/base.glb'
 import projectsDistinctionsCSSDACollisionSource from '../models/projects/distinctions/cssda/collision.glb'
 
+import projectsThreejsJourneyFloorSource from '../models/projects/threejsJourney/floorTexture.png'
+import projectsChartogneFloorSource from '../models/projects/chartogne/floorTexture.png'
+import projectsZenlyFloorSource from '../models/projects/zenly/floorTexture.png'
 import projectsCitrixRedbullFloorSource from '../models/projects/citrixRedbull/floorTexture.png'
 import projectsPriorHoldingsFloorSource from '../models/projects/priorHoldings/floorTexture.png'
 import projectsOranoFloorSource from '../models/projects/orano/floorTexture.png'
 import projectsGleecChatFloorSource from '../models/projects/gleecChat/floorTexture.png'
-import projectsRefletCommunicationFloorSource from '../models/projects/refletCommunication/floorTexture.png'
 import projectsKepplerFloorSource from '../models/projects/keppler/floorTexture.png'
 
 // Information
@@ -139,6 +141,11 @@ import hornCollisionSource from '../models/horn/collision.glb'
 // import distinctionBStaticBaseSource from '../models/distinctionB/static/base.glb'
 // import distinctionBStaticCollisionSource from '../models/distinctionB/static/collision.glb'
 
+// // Distinction C
+// import distinctionCStaticFloorShadowSource from '../models/distinctionC/static/floorShadow.png'
+// import distinctionCStaticBaseSource from '../models/distinctionC/static/base.glb'
+// import distinctionCStaticCollisionSource from '../models/distinctionC/static/collision.glb'
+
 // // Cone
 // import coneBaseSource from '../models/cone/base.glb'
 // import coneCollisionSource from '../models/cone/collision.glb'
@@ -146,6 +153,10 @@ import hornCollisionSource from '../models/horn/collision.glb'
 // // Awwwards trophy
 // import awwwardsTrophyBaseSource from '../models/awwwardsTrophy/base.glb'
 // import awwwardsTrophyCollisionSource from '../models/awwwardsTrophy/collision.glb'
+
+// Awwwards trophy
+import webbyTrophyBaseSource from '../models/webbyTrophy/base.glb'
+import webbyTrophyCollisionSource from '../models/webbyTrophy/collision.glb'
 
 // Lemon
 import lemonBaseSource from '../models/lemon/base.glb'
@@ -293,37 +304,14 @@ export default class Resources extends EventEmitter
             { name: 'projectsDistinctionsCSSDABase', source: projectsDistinctionsCSSDABaseSource },
             { name: 'projectsDistinctionsCSSDACollision', source: projectsDistinctionsCSSDACollisionSource },
 
+            { name: 'projectsThreejsJourneyFloor', source: projectsThreejsJourneyFloorSource, type: 'texture' },
+            { name: 'projectsChartogneFloor', source: projectsChartogneFloorSource, type: 'texture' },
+            { name: 'projectsZenlyFloor', source: projectsZenlyFloorSource, type: 'texture' },
             { name: 'projectsCitrixRedbullFloor', source: projectsCitrixRedbullFloorSource, type: 'texture' },
-            // { name: 'projectsCitrixRedbullSlideA', source: projectsCitrixRedbullSlideASources, type: 'texture' },
-            // { name: 'projectsCitrixRedbullSlideB', source: projectsCitrixRedbullSlideBSources, type: 'texture' },
-            // { name: 'projectsCitrixRedbullSlideC', source: projectsCitrixRedbullSlideCSources, type: 'texture' },
-
             { name: 'projectsPriorHoldingsFloor', source: projectsPriorHoldingsFloorSource, type: 'texture' },
-            // { name: 'projectsPriorHoldingsSlideA', source: projectsPriorHoldingsSlideASources, type: 'texture' },
-            // { name: 'projectsPriorHoldingsSlideB', source: projectsPriorHoldingsSlideBSources, type: 'texture' },
-            // { name: 'projectsPriorHoldingsSlideC', source: projectsPriorHoldingsSlideCSources, type: 'texture' },
-
             { name: 'projectsOranoFloor', source: projectsOranoFloorSource, type: 'texture' },
-            // { name: 'projectsOranoSlideA', source: projectsOranoSlideASources, type: 'texture' },
-            // { name: 'projectsOranoSlideB', source: projectsOranoSlideBSources, type: 'texture' },
-            // { name: 'projectsOranoSlideC', source: projectsOranoSlideCSources, type: 'texture' },
-
             { name: 'projectsGleecChatFloor', source: projectsGleecChatFloorSource, type: 'texture' },
-            // { name: 'projectsGleecChatSlideA', source: projectsGleecChatSlideASources, type: 'texture' },
-            // { name: 'projectsGleecChatSlideB', source: projectsGleecChatSlideBSources, type: 'texture' },
-            // { name: 'projectsGleecChatSlideC', source: projectsGleecChatSlideCSources, type: 'texture' },
-            // { name: 'projectsGleecChatSlideD', source: projectsGleecChatSlideDSources, type: 'texture' },
-
-            { name: 'projectsRefletCommunicationFloor', source: projectsRefletCommunicationFloorSource, type: 'texture' },
-            // { name: 'projectsRefletCommunicationSlideA', source: projectsRefletCommunicationSlideASources, type: 'texture' },
-            // { name: 'projectsRefletCommunicationSlideB', source: projectsRefletCommunicationSlideBSources, type: 'texture' },
-            // { name: 'projectsRefletCommunicationSlideC', source: projectsRefletCommunicationSlideCSources, type: 'texture' },
-            // { name: 'projectsRefletCommunicationSlideD', source: projectsRefletCommunicationSlideDSources, type: 'texture' },
-
             { name: 'projectsKepplerFloor', source: projectsKepplerFloorSource, type: 'texture' },
-            // { name: 'projectsKepplerSlideA', source: projectsKepplerSlideASources, type: 'texture' },
-            // { name: 'projectsKepplerSlideB', source: projectsKepplerSlideBSources, type: 'texture' },
-            // { name: 'projectsKepplerSlideC', source: projectsKepplerSlideCSources, type: 'texture' },
 
             // Information
             { name: 'informationStaticBase', source: informationStaticBaseSource },
@@ -363,6 +351,11 @@ export default class Resources extends EventEmitter
             // { name: 'distinctionBStaticCollision', source: distinctionBStaticCollisionSource },
             // { name: 'distinctionBStaticFloorShadow', source: distinctionBStaticFloorShadowSource, type: 'texture' },
 
+            // // Distinction C
+            // { name: 'distinctionCStaticBase', source: distinctionCStaticBaseSource },
+            // { name: 'distinctionCStaticCollision', source: distinctionCStaticCollisionSource },
+            // { name: 'distinctionCStaticFloorShadow', source: distinctionCStaticFloorShadowSource, type: 'texture' },
+
             // // Cone
             // { name: 'coneBase', source: coneBaseSource },
             // { name: 'coneCollision', source: coneCollisionSource },
@@ -370,6 +363,10 @@ export default class Resources extends EventEmitter
             // // Awwwards trophy
             // { name: 'awwwardsTrophyBase', source: awwwardsTrophyBaseSource },
             // { name: 'awwwardsTrophyCollision', source: awwwardsTrophyCollisionSource },
+
+            // Webby trophy
+            { name: 'webbyTrophyBase', source: webbyTrophyBaseSource },
+            { name: 'webbyTrophyCollision', source: webbyTrophyCollisionSource },
 
             // Lemon
             { name: 'lemonBase', source: lemonBaseSource },
