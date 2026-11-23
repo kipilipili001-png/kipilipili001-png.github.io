@@ -240,8 +240,9 @@ export default class IntroSection
         }
 
         // First row: IBRAHIM | Second row: KIPILIPILI
-        addWordRow('IBRAHIM', - 1.5, 4.2, 1.35, 0.35)
-        addWordRow('KIPILIPILI', - 1.5, 1.8, 1.25, 0.3)
+ addWordRow('IBRAHIM', - 1.5, 4.2, 1.35, 0.35)
+ addWordRow('KIPILIPILI', - 1.5, 1.8, 1.25, 0.3)
+
 
         // Creative Developer subtitle
         this.objects.add({
