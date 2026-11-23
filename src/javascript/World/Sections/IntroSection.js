@@ -164,18 +164,8 @@ export default class IntroSection
     {
         const fontLoader = new FontLoader()
         const font = fontLoader.parse(helvetikerBoldFont)
+        const unitBoxGeometry = new THREE.BoxGeometry(1, 1, 1)
 
-        // Reuse the existing pure-white material from the original intro letters
-        let letterMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
-        this.resources.items.introBBase.scene.traverse((_child) =>
-        {
-            if(_child.isMesh && _child.material)
-            {
-                letterMaterial = _child.material
-            }
-        })
-
-        // Helper to build each 3D upright letter with a matching physics box
         const addWordRow = (_word, _centerX, _y, _size, _spacing) =>
         {
             const letters = _word.split('')
@@ -195,7 +185,7 @@ export default class IntroSection
                     bevelSegments: 3
                 })
 
-                // Stand the letter upright along the Z axis and center its origin for Cannon.js
+                // Stand letter upright along Z and center its geometry around (0, 0, 0)
                 geometry.rotateX(Math.PI * 0.5)
                 geometry.computeBoundingBox()
 
@@ -222,13 +212,17 @@ export default class IntroSection
                 const posX = currentX + _item.width * 0.5
                 const posZ = _item.height * 0.5 + 0.05
 
+                // Name 'pureWhite' triggers Objects.js's pureWhite shader parser
                 const baseScene = new THREE.Object3D()
-                const baseMesh = new THREE.Mesh(_item.geometry, letterMaterial)
+                const baseMesh = new THREE.Mesh(_item.geometry)
+                baseMesh.name = 'pureWhite'
                 baseScene.add(baseMesh)
 
+                // Name 'cube' with scale triggers Physics.js's box collider parser
                 const collisionScene = new THREE.Object3D()
-                const collisionGeometry = new THREE.BoxGeometry(_item.width, _item.depth, _item.height)
-                const collisionMesh = new THREE.Mesh(collisionGeometry)
+                const collisionMesh = new THREE.Mesh(unitBoxGeometry)
+                collisionMesh.name = 'cube'
+                collisionMesh.scale.set(_item.width, _item.depth, _item.height)
                 collisionScene.add(collisionMesh)
 
                 this.objects.add({
@@ -247,11 +241,12 @@ export default class IntroSection
 
         // First row: IBRAHIM | Second row: KIPILIPILI
         addWordRow('IBRAHIM', - 1.5, 4.2, 1.35, 0.35)
-addWordRow('KIPILIPILI', - 1.5, 1.8, 1.25, 0.3)
-// Keep the "CREATIVE DEVELOPER" subtitle pieces
-this.objects.add({
-base: this.resources.items.introCreativeBase.scene,
-collision: this.resources.items.introCreativeCollision.scene,
+        addWordRow('KIPILIPILI', - 1.5, 1.8, 1.25, 0.3)
+
+        // Creative Developer subtitle
+        this.objects.add({
+            base: this.resources.items.introCreativeBase.scene,
+            collision: this.resources.items.introCreativeCollision.scene,
 offset: new THREE.Vector3(0, 0, 0),
 rotation: new THREE.Euler(0, 0, 0.25),
 shadow: { sizeX: 5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
