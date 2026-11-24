@@ -25,10 +25,73 @@ export default class InformationSection
         this.setTiles()
     }
 
+    createTanzaniaFlagTexture()
+    {
+        const canvas = document.createElement('canvas')
+        canvas.width = 512
+        canvas.height = 342
+        const ctx = canvas.getContext('2d')
+
+        // Green top-left triangle (#1EB53A)
+        ctx.fillStyle = '#1EB53A'
+        ctx.beginPath()
+        ctx.moveTo(0, 0)
+        ctx.lineTo(canvas.width, 0)
+        ctx.lineTo(0, canvas.height)
+        ctx.closePath()
+        ctx.fill()
+
+        // Light blue bottom-right triangle (#00A3DD)
+        ctx.fillStyle = '#00A3DD'
+        ctx.beginPath()
+        ctx.moveTo(canvas.width, 0)
+        ctx.lineTo(canvas.width, canvas.height)
+        ctx.lineTo(0, canvas.height)
+        ctx.closePath()
+        ctx.fill()
+
+        // Yellow/Gold diagonal border (#FCD116)
+        ctx.strokeStyle = '#FCD116'
+        ctx.lineWidth = 115
+        ctx.beginPath()
+        ctx.moveTo(- 40, canvas.height + 27)
+        ctx.lineTo(canvas.width + 40, - 27)
+        ctx.stroke()
+
+        // Black diagonal center band (#000000)
+        ctx.strokeStyle = '#000000'
+        ctx.lineWidth = 78
+        ctx.beginPath()
+        ctx.moveTo(- 40, canvas.height + 27)
+        ctx.lineTo(canvas.width + 40, - 27)
+        ctx.stroke()
+
+        const texture = new THREE.CanvasTexture(canvas)
+        texture.colorSpace = THREE.SRGBColorSpace
+        texture.needsUpdate = true
+
+        return texture
+    }
+
     setStatic()
     {
+        const staticScene = this.resources.items.informationStaticBase.scene
+        const tanzaniaTexture = this.createTanzaniaFlagTexture()
+
+        // Replace the French flag mesh material with the Tanzanian flag texture
+        staticScene.traverse((_child) =>
+        {
+            if(_child.isMesh && /flag|drapeau|france/i.test(_child.name))
+            {
+                _child.material = new THREE.MeshBasicMaterial({
+                    map: tanzaniaTexture,
+                    side: THREE.DoubleSide
+                })
+            }
+        })
+
         this.objects.add({
-            base: this.resources.items.informationStaticBase.scene,
+            base: staticScene,
             collision: this.resources.items.informationStaticCollision.scene,
             floorShadowTexture: this.resources.items.informationStaticFloorShadowTexture,
             offset: new THREE.Vector3(this.x, this.y, 0),
